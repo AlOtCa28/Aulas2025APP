@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mi_nav"
+    app:startDestination="@id/navigation_profesores">
+    <fragment
+        android:id="@+id/navigation_profesores"
+        android:name="com.example.aulas2025app.JEFE.JefeProfesores.ProfesoresFragment"
+        android:label="fragment_profesores"
+        tools:layout="@layout/fragment_profesores" >
+        <action
+            android:id="@+id/action_navigation_profesores_to_navigation_Aulas"
+            app:destination="@id/navigation_Aulas" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigation_Aulas"
+        android:name="com.example.aulas2025app.JEFE.JefeAulas.FragmentoAulas"
+        android:label="fragment_fragmento_aulas"
+        tools:layout="@layout/fragment_fragmento_aulas" >
+        <action
+            android:id="@+id/action_navigation_Aulas_to_navigation_profesores"
+            app:destination="@id/navigation_profesores" />
+    </fragment>
+</navigation>

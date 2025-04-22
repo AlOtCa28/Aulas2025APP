@@ -1,0 +1,12 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/navigation_profesores"
+        android:icon="@drawable/ic_persona"
+        android:title=""/>
+
+    <item
+        android:id="@+id/navigation_Aulas"
+        android:icon="@drawable/school_24"
+        android:title=""/>
+</menu>

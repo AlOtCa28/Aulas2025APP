@@ -4,4 +4,5 @@
     <string name="CONTRASEÑA">Contraseña</string>
     <string name="SALIR">Salir</string>
     <string name="login">Iniciar Sesion</string>
+    <string name="AñadirProfesor">Añadir Profesor</string>
 </resources>

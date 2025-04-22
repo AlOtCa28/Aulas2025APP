@@ -1,17 +1,25 @@
 package com.example.aulas2025app.JEFE
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.navigation.NavController
+import androidx.navigation.fragment.NavHostFragment
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
+import com.example.aulas2025app.LOGIN.LoginActivity
 import com.example.aulas2025app.R
 import com.example.aulas2025app.databinding.ActivityJefeBinding
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class JefeActivity : AppCompatActivity() {
-    // Variables
     private lateinit var binding: ActivityJefeBinding
-     private lateinit var jefeViewModel: JefeViewModel
+    private lateinit var jefeViewModel: JefeViewModel
+    private lateinit var navController: NavController
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,10 +28,27 @@ class JefeActivity : AppCompatActivity() {
         binding = ActivityJefeBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
-        }
+        setSupportActionBar(binding.mtbMenu)
+
+        val navHostFragment = supportFragmentManager.findFragmentById(R.id.miFragContainer) as NavHostFragment
+        navController = navHostFragment.navController
+
+        val navView: BottomNavigationView = binding.btvMenu
+        val appBarConfiguration = AppBarConfiguration(
+            setOf(
+                R.id.navigation_profesores, R.id.navigation_Aulas
+            )
+        )
+        navView.setupWithNavController(navController)
+
+        supportActionBar?.title = "AULAS 2025 APP"
+        supportActionBar?.setDisplayHomeAsUpEnabled(true)
+    }
+
+    override fun onSupportNavigateUp(): Boolean {
+        val intent = Intent(this, LoginActivity::class.java)
+        startActivity(intent)
+        finish()
+        return true
     }
 }
