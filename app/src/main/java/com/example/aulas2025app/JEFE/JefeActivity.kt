@@ -41,7 +41,7 @@ class JefeActivity : AppCompatActivity() {
         )
         navView.setupWithNavController(navController)
 
-        supportActionBar?.title = "AULAS 2025 APP"
+        supportActionBar?.title = "JEFES"
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 

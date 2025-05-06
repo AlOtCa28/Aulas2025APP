@@ -6,5 +6,7 @@ object Parametros {
 
     var usuarioLogeado: String? = null
 
+    var rolUsuarioLogeado: Int? = null
+
     var usuarioLogeadoId: Int? = null
 }

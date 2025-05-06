@@ -52,6 +52,7 @@ class LoginActivity : AppCompatActivity() {
                     startActivity(intent)
                     Parametros.usuarioLogeadoId = it.idUsuario
                     Parametros.usuarioLogeado = binding.edtNombre.text.toString()
+                    Parametros.rolUsuarioLogeado = it.rol
                     limpiar()
                     loginViewModel.limpiarRespuesta()
                 }
