@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aulas2025app.JEFE.JefeAulas.CrearAula.CrearAula
 import com.example.aulas2025app.R
 import com.example.aulas2025app.databinding.FragmentFragmentoAulasBinding
 
@@ -50,6 +51,10 @@ class FragmentoAulas : Fragment() {
             adaptadorRV.notifyDataSetChanged()
         }
 
+        binding.btnAddPrueba.setOnClickListener {
+            val intent = Intent(requireContext(), CrearAula::class.java)
+            startActivity(intent)
+        }
     }
 
     override fun onDestroyView() {

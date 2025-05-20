@@ -5,7 +5,7 @@ import java.io.Serializable
 
 data class Usuario(
     @SerializedName("id")
-    val idUsuario: Int? = null,
+    val id: Int? = null,
 
     @SerializedName("nombre")
     val nombre: String,
@@ -14,7 +14,7 @@ data class Usuario(
     val email: String,
 
     @SerializedName("passwordHash")
-    val contraseña: String,
+    val passwordHash: String,
 
     @SerializedName("rol")
     val rol: Int

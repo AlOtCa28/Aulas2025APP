@@ -2,16 +2,13 @@ package com.example.aulas2025app.JEFE.JefeProfesores.CrearUsuario
 
 import Modelo.Usuario.Usuario
 import android.os.Bundle
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
-import androidx.lifecycle.viewModelScope
 import com.example.aulas2025app.JEFE.JefeProfesores.ProfesoresViewModel
-import com.example.aulas2025app.PROFESOR.ProfesorViewModel
-import com.example.aulas2025app.R
 import com.example.aulas2025app.databinding.ActivityCrearUsuarioBinding
+import com.google.gson.Gson
 
 class CrearUsuario : AppCompatActivity() {
     private lateinit var binding: ActivityCrearUsuarioBinding
@@ -28,24 +25,25 @@ class CrearUsuario : AppCompatActivity() {
         binding.btnCrearUsuario.setOnClickListener {
             val nombre = binding.edtNombreNuevo.text.toString()
             val email = binding.edtEmailNuevo.text.toString()
-            val password = binding.edtContraseANueva.text.toString()
-            val rol = binding.edtRol.text.toString().toInt()
+            val passwordHash = binding.edtContraseANueva.text.toString()
+            val rol = binding.edtRol.text.toString().toIntOrNull() ?: -1
 
-
-            if (nombre.isEmpty() || email.isEmpty() || password.isEmpty()) {
+            if (nombre.isBlank() || email.isBlank() || passwordHash.isBlank() || rol <= 0) {
+                Toast.makeText(this, "Rellena todos los campos", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
-            } else {
-                val usuario = Usuario(
-                    nombre = nombre,
-                    email = email,
-                    contraseña = password,
-                    rol = rol
-                )
-
-                profesorViewModel.registrarUsuarioVM(usuario)
-                finish()
             }
+
+            val usuario = Usuario(
+                nombre = nombre,
+                email = email,
+                passwordHash = passwordHash,
+                rol = rol
+            )
+
+            profesorViewModel.registrarUsuarioVM(usuario)
+            finish()
         }
+
 
         binding.btnCancelarUsuario.setOnClickListener {
             finish()

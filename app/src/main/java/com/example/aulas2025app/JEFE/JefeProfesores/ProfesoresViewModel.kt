@@ -48,11 +48,14 @@ class ProfesoresViewModel : ViewModel() {
             var response: Response<Boolean> = UserNetwork.retrofit.registrarUsuario(usuario)
 
             if (response.isSuccessful) {
-                _resOperacion.value = response.body()
+                println("Respuesta del servidor: ${response.body()}")
+                _resOperacion.value = true
             } else {
                 _resOperacion.value = false
                 _errorCode.value = response.code()
+                println("Error Code: ${response.code()}, Error Body: ${response.errorBody()?.string()}")
             }
+
             _isLoading.value = false
         }
     }

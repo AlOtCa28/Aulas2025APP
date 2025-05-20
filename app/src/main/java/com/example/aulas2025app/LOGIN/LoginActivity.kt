@@ -50,7 +50,7 @@ class LoginActivity : AppCompatActivity() {
                         Intent(this, ProfesorActivity::class.java)
                     }
                     startActivity(intent)
-                    Parametros.usuarioLogeadoId = it.idUsuario
+                    Parametros.usuarioLogeadoId = it.id
                     Parametros.usuarioLogeado = binding.edtNombre.text.toString()
                     Parametros.rolUsuarioLogeado = it.rol
                     limpiar()
