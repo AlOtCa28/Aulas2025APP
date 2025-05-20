@@ -16,6 +16,9 @@
         android:theme="@style/Theme.Aulas2025APP"
         tools:targetApi="31">
         <activity
+            android:name=".JEFE.JefeProfesores.CrearUsuario.CrearUsuario"
+            android:exported="false" />
+        <activity
             android:name=".PROFESOR.ProfesorActivity"
             android:exported="false" />
         <activity

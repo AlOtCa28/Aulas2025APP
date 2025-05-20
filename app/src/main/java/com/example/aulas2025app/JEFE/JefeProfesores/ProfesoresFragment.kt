@@ -11,6 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.aulas2025app.JEFE.JefeProfesores.CrearUsuario.CrearUsuario
 import com.example.aulas2025app.PROFESOR.ProfesorViewModel
 import com.example.aulas2025app.R
 import com.example.aulas2025app.databinding.FragmentProfesoresBinding
@@ -50,6 +51,11 @@ class ProfesoresFragment : Fragment() {
             datosRepresentar.addAll(usuarios.filter { it.rol != 1})
             adaptadorRV.notifyDataSetChanged()
 
+        }
+
+        binding.btnAddUsuario.setOnClickListener {
+            val intent = Intent(requireContext(), CrearUsuario::class.java)
+            startActivity(intent)
         }
     }
 

@@ -26,5 +26,5 @@ interface UsuarioAPI {
     suspend fun registrarUsuario(@Body usuario: Usuario): Response<Boolean>
 
     @DELETE("usuarios/borrar/{id}")
-    suspend fun borrarUsuario(@Path("id") id: Int): Response<Boolean>
+    suspend fun eliminarUsuario(@Path("id") id: Int): Response<Boolean>
 }

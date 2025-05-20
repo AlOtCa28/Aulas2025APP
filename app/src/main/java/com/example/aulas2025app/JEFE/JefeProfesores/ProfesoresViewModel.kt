@@ -40,4 +40,20 @@ class ProfesoresViewModel : ViewModel() {
             _isLoading.value = false
         }
     }
+
+
+    fun registrarUsuarioVM(usuario: Usuario) {
+        viewModelScope.launch {
+            _isLoading.value = true
+            var response: Response<Boolean> = UserNetwork.retrofit.registrarUsuario(usuario)
+
+            if (response.isSuccessful) {
+                _resOperacion.value = response.body()
+            } else {
+                _resOperacion.value = false
+                _errorCode.value = response.code()
+            }
+            _isLoading.value = false
+        }
+    }
 }
