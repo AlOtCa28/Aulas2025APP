@@ -101,11 +101,6 @@ class DispositivosViewModel : ViewModel() {
             }
         }
     }
-
-
-
-
-
 }
 
 

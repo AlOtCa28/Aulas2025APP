@@ -16,6 +16,12 @@
         android:theme="@style/Theme.Aulas2025APP"
         tools:targetApi="31">
         <activity
+            android:name=".JEFE.JefeDispositivos.DetalleDispositivo.DetalleDispositivoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".JEFE.JefeAulas.DetalleAula.DetalleAulaActivity"
+            android:exported="false" />
+        <activity
             android:name=".JEFE.JefeProfesores.DetallesUsuario.DetalleUsuarioActivity"
             android:exported="false" />
         <activity

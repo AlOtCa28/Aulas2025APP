@@ -47,4 +47,20 @@ object UserNetwork {
             .build()
             .create(EspecificacionMonitorAPI::class.java)
     }
+
+    val retrofitMensajes by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url + ":" + Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MensajeAPI::class.java)
+    }
+
+    val retrofitMensajeUsuario by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url + ":" + Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(MensajeUsuarioAPI::class.java)
+    }
 }

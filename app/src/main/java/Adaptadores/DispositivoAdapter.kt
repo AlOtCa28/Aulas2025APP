@@ -12,7 +12,8 @@ import com.example.aulas2025app.R
 class DispositivoAdapter(
     private val context: Context,
     private val listaDispositivos: List<Dispositivo>,
-    private val onItemLongClick: (Dispositivo) -> Unit
+    private val onItemClick: (Dispositivo) -> Unit,      // click normal
+    private val onItemLongClick: (Dispositivo) -> Unit  // click largo
 ) : RecyclerView.Adapter<DispositivoAdapter.DispositivoViewHolder>() {
 
     inner class DispositivoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -30,6 +31,12 @@ class DispositivoAdapter(
         holder.txtCodigo.text = dispositivo.codigo
         holder.txtDescripcion.text = dispositivo.descripcion
 
+        // Click normal
+        holder.itemView.setOnClickListener {
+            onItemClick(dispositivo)
+        }
+
+        // Click largo
         holder.itemView.setOnLongClickListener {
             onItemLongClick(dispositivo)
             true
@@ -38,3 +45,4 @@ class DispositivoAdapter(
 
     override fun getItemCount(): Int = listaDispositivos.size
 }
+

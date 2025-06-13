@@ -5,6 +5,7 @@ import Adaptadores.AdaptadorProfesoresYEncargados
 import Modelos.Aulas.Aula
 import android.content.Intent
 import android.os.Bundle
+import android.widget.Button
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -14,42 +15,57 @@ import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.aulas2025app.ENCARGADO.EngargadoYProfesores.EncargadoYProfesorFragment
+import com.example.aulas2025app.JEFE.JefeAulas.FragmentoAulas
+import com.example.aulas2025app.JEFE.JefeDispositivos.FragmentoDispositivos
 import com.example.aulas2025app.LOGIN.LoginActivity
 import com.example.aulas2025app.R
 import com.example.aulas2025app.databinding.ActivityEncargadoBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class EncargadoActivity : AppCompatActivity() {
-    private lateinit var binding: ActivityEncargadoBinding
-    private lateinit var encargadoViewModel: EncargadoViewModel
 
+    private val fragmentAulas = FragmentoAulas.newInstance(false)
+    private val fragmentDispositivos = FragmentoDispositivos.newInstance(false)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        binding = ActivityEncargadoBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_encargado)
 
-        setSupportActionBar(binding.mtbMenu)
-
-        setSupportActionBar(binding.mtbMenu)
-
-
-        supportActionBar?.title = "ENCARGADOS"
+        val toolbar: androidx.appcompat.widget.Toolbar = findViewById(R.id.toolbar_encargado)
+        setSupportActionBar(toolbar)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
+        supportActionBar?.title = "Encargados"
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.beginTransaction()
-                .replace(R.id.fragment_container, EncargadoYProfesorFragment())
-                .commit()
+        val bottomNavigationView: BottomNavigationView = findViewById(R.id.bottom_navigation_encargado)
+
+        // Mostrar el fragmento Aulas por defecto
+        supportFragmentManager.beginTransaction()
+            .replace(R.id.contenedorFragments, fragmentAulas)
+            .commit()
+
+        bottomNavigationView.setOnItemSelectedListener { item ->
+            when (item.itemId) {
+                R.id.menu_aulas -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenedorFragments, fragmentAulas)
+                        .commit()
+                    true
+                }
+                R.id.menu_dispositivos -> {
+                    supportFragmentManager.beginTransaction()
+                        .replace(R.id.contenedorFragments, fragmentDispositivos)
+                        .commit()
+                    true
+                }
+                else -> false
+            }
         }
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        val intent = Intent(this, LoginActivity::class.java)
-        startActivity(intent)
         finish()
         return true
     }
 }
+
+

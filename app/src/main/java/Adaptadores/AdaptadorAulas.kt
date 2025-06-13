@@ -20,6 +20,7 @@ class AdaptadorAulas(
     private var listaProfesores: List<Usuario> = emptyList()
 
     private var onLongClickListener: ((Aula) -> Unit)? = null
+    private var onClickListener: ((Aula) -> Unit)? = null
 
     fun setProfesores(lista: List<Usuario>) {
         this.listaProfesores = lista
@@ -27,6 +28,10 @@ class AdaptadorAulas(
 
     fun setOnLongClickListener(listener: (Aula) -> Unit) {
         this.onLongClickListener = listener
+    }
+
+    fun setOnClickListener(listener: (Aula) -> Unit) {
+        this.onClickListener = listener
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
@@ -41,6 +46,10 @@ class AdaptadorAulas(
 
         val encargado = listaProfesores.firstOrNull { it.id == aula.idEncargado }
         holder.profesor.text = encargado?.nombre ?: "Sin asignar"
+
+        holder.itemView.setOnClickListener {
+            onClickListener?.invoke(aula)
+        }
 
         holder.itemView.setOnLongClickListener {
             onLongClickListener?.invoke(aula)
@@ -57,3 +66,4 @@ class AdaptadorAulas(
         var profesor: TextView = itemView.findViewById(R.id.txtProfe)
     }
 }
+

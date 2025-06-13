@@ -25,4 +25,8 @@ interface DispositivoAPI {
 
     @DELETE("dispositivos/eliminar/{id}")
     suspend fun eliminarDispositivo(@Path("id") id: Int): Response<Boolean>
+
+
+    @GET("dispositivos/porAula/{idAula}")
+    suspend fun obtenerDispositivosPorAula(@Path("idAula") aulaId: Int): Response<List<Dispositivo>>
 }

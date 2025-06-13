@@ -2,6 +2,7 @@ package com.example.aulas2025app.JEFE.JefeDispositivos.CrearDispositivos
 
 import Modelos.Aulas.Aula
 import Modelos.Dispositivo.Dispositivo
+import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.widget.ArrayAdapter
@@ -93,7 +94,6 @@ class CrearDispositivo : AppCompatActivity() {
             dispositivosViewModel.crearDispositivo(nuevoDispositivo)
         }
 
-
         dispositivosViewModel.resultado.observe(this) { exito ->
             if (!exito) {
                 Toast.makeText(this, "Error al crear el dispositivo", Toast.LENGTH_SHORT).show()
@@ -119,16 +119,17 @@ class CrearDispositivo : AppCompatActivity() {
                         startActivity(intent)
                     }
                     else -> {
-                        // Opcional: manejar otros tipos o mostrar mensaje
                         Toast.makeText(this, "Tipo no soportado o no es el correcto: $tipoSeleccionado", Toast.LENGTH_SHORT).show()
                     }
                 }
+                // Aquí indicamos resultado OK para que el fragmento recargue la lista
+                setResult(Activity.RESULT_OK)
                 finish()
             }
         }
 
-
         binding.btnCancelarDispositivo.setOnClickListener {
+            setResult(Activity.RESULT_CANCELED) // Opcional: indicar cancelación
             finish()
         }
     }

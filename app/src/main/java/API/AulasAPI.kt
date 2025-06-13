@@ -6,6 +6,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface AulasAPI {
@@ -16,6 +17,9 @@ interface AulasAPI {
 
     @POST("aulas/listado/registrar")
     suspend fun registrarAula(@Body aula: Aula): Response<Boolean>
+
+    @PUT("aulas/listado/actualizar")
+    suspend fun actualizarAula(@Body aula: Aula): Response<Boolean>
 
     @DELETE("aulas/listado/eliminar/{id}")
     suspend fun eliminarAula(@Path("id") id: Int): Response<Boolean>
