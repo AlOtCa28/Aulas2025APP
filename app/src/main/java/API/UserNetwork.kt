@@ -19,4 +19,32 @@ object UserNetwork {
             .build()
             .create(AulasAPI::class.java)
     }
+    val retrofitEspecificacionesPC by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url+":"+Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(EspecificacionPcAPI::class.java)
+    }
+    val retrofitEspecificacionImpresora by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url+":"+Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(EspecificacionImpresoraAPI::class.java)
+    }
+    val retrofitDispositivos by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url+":"+Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(DispositivoAPI::class.java)
+    }
+    val retrofitEspecificacionMonitor by lazy {
+        Retrofit.Builder()
+            .baseUrl(Parametros.url+":"+Parametros.puerto)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+            .create(EspecificacionMonitorAPI::class.java)
+    }
 }

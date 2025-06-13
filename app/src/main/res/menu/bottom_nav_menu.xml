@@ -9,4 +9,9 @@
         android:id="@+id/navigation_Aulas"
         android:icon="@drawable/school_24"
         android:title=""/>
+
+    <item
+        android:id="@+id/navigation_dispositivos"
+        android:icon="@drawable/devices_24"
+        android:title="" />
 </menu>

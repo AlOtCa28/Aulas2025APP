@@ -36,7 +36,7 @@ class JefeActivity : AppCompatActivity() {
         val navView: BottomNavigationView = binding.btvMenu
         val appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.navigation_profesores, R.id.navigation_Aulas
+                R.id.navigation_profesores, R.id.navigation_Aulas, R.id.navigation_dispositivos
             )
         )
         navView.setupWithNavController(navController)

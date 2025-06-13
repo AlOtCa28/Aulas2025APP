@@ -7,6 +7,7 @@ import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 import retrofit2.http.POST
+import retrofit2.http.PUT
 import retrofit2.http.Path
 
 interface UsuarioAPI {
@@ -19,8 +20,8 @@ interface UsuarioAPI {
     @GET("usuarios/listado")
     suspend fun listarUsuarios(): Response<MutableList<Usuario>>
 
-    @GET("usuarios/actualizar/{id}")
-    suspend fun actualizarUsuario(@Path("id") id: Int): Response<Boolean>
+    @PUT("usuarios/actualizar")
+    suspend fun actualizarUsuario(@Body usuario: Usuario): Response<Boolean>
 
     @POST("usuarios/registrar")
     suspend fun registrarUsuario(@Body usuario: Usuario): Response<Boolean>

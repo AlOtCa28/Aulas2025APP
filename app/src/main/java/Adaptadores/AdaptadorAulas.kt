@@ -1,6 +1,7 @@
 package Adaptadores
 
 
+import Modelo.Usuario.Usuario
 import Modelos.Aulas.Aula
 import android.annotation.SuppressLint
 import android.content.Context
@@ -16,6 +17,18 @@ class AdaptadorAulas(
     private var datos: ArrayList<Aula>
 ) : RecyclerView.Adapter<AdaptadorAulas.MyViewHolder>() {
 
+    private var listaProfesores: List<Usuario> = emptyList()
+
+    private var onLongClickListener: ((Aula) -> Unit)? = null
+
+    fun setProfesores(lista: List<Usuario>) {
+        this.listaProfesores = lista
+    }
+
+    fun setOnLongClickListener(listener: (Aula) -> Unit) {
+        this.onLongClickListener = listener
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val v = LayoutInflater.from(parent.context).inflate(R.layout.item_card_aula, parent, false)
         return MyViewHolder(v)
@@ -25,16 +38,22 @@ class AdaptadorAulas(
     override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val aula = datos[position]
         holder.descr.text = aula.nombreAula
-        holder.profesor.text = aula.idEncargado.toString()
 
+        val encargado = listaProfesores.firstOrNull { it.id == aula.idEncargado }
+        holder.profesor.text = encargado?.nombre ?: "Sin asignar"
+
+        holder.itemView.setOnLongClickListener {
+            onLongClickListener?.invoke(aula)
+            true
+        }
     }
+
     override fun getItemCount(): Int {
         return datos.size
     }
 
     inner class MyViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        var descr: TextView = itemView.findViewById<View>(R.id.txtNombre) as TextView
-        var profesor: TextView = itemView.findViewById<View>(R.id.txtProfe) as TextView
+        var descr: TextView = itemView.findViewById(R.id.txtNombre)
+        var profesor: TextView = itemView.findViewById(R.id.txtProfe)
     }
-
 }

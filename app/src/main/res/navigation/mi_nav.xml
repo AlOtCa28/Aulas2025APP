@@ -22,4 +22,11 @@
             android:id="@+id/action_navigation_Aulas_to_navigation_profesores"
             app:destination="@id/navigation_profesores" />
     </fragment>
+
+
+    <fragment
+        android:id="@+id/navigation_dispositivos"
+        android:name="com.example.aulas2025app.JEFE.JefeDispositivos.FragmentoDispositivos"
+        android:label="Dispositivos"
+        tools:layout="@layout/fragment_dispositivos" />
 </navigation>

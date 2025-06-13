@@ -2,6 +2,7 @@ package com.example.aulas2025app.JEFE.JefeAulas
 
 import API.UserNetwork
 import Modelos.Aulas.Aula
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -26,6 +27,9 @@ class FragmentoAulasViewModel : ViewModel() {
     private val _errorCode = MutableLiveData<Int?>()
     val errorCode: LiveData<Int?> get() = _errorCode
 
+    private val _resultado = MutableLiveData<Boolean>()
+    val resultado: LiveData<Boolean> = _resultado
+
     fun getAulasVM() {
         viewModelScope.launch {
             _isLoading.value = true
@@ -40,4 +44,32 @@ class FragmentoAulasViewModel : ViewModel() {
             _isLoading.value = false
         }
     }
+
+
+    fun crearAula(aula: Aula) {
+        viewModelScope.launch {
+            try {
+                val response = UserNetwork.retrofitAulas.registrarAula(aula)
+                _resultado.value = response.isSuccessful && response.body() == true
+            } catch (e: Exception) {
+                _resultado.value = false
+            }
+        }
+    }
+
+    fun eliminarAula(id: Int) {
+        viewModelScope.launch {
+            try {
+                Log.d("FragmentoAulasVM", "Intentando eliminar aula con id: $id")
+                val response = UserNetwork.retrofitAulas.eliminarAula(id)
+                Log.d("FragmentoAulasVM", "Respuesta retrofit: ${response.code()} - ${response.message()}")
+                Log.d("FragmentoAulasVM", "Body: ${response.body()}")
+                _resOperacion.value = response.isSuccessful && response.body() == true
+            } catch (e: Exception) {
+                Log.e("FragmentoAulasVM", "Error al eliminar aula", e)
+                _resOperacion.value = false
+            }
+        }
+    }
+
 }

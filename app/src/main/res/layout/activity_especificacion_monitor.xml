@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:gravity="center"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/edtResolucion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Resolución máxima (ej: 1920x1080)" />
+
+    <EditText
+        android:id="@+id/edtPulgadas"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Pulgadas (ej: 24.0)"
+        android:inputType="numberDecimal" />
+
+    <CheckBox
+        android:id="@+id/checkboxOrientable"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="¿Es orientable?" />
+
+    <Button
+        android:id="@+id/btnGuardarMonitor"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Guardar" />
+</LinearLayout>

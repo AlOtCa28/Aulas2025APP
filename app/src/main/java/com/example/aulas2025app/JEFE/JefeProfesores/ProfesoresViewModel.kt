@@ -3,6 +3,7 @@ package com.example.aulas2025app.JEFE.JefeProfesores
 import API.UserNetwork
 import Modelo.Usuario.Usuario
 import Modelos.Aulas.Aula
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
@@ -22,6 +23,9 @@ class ProfesoresViewModel : ViewModel() {
 
     private val _resOperacion = MutableLiveData<Boolean>()
     val resOperacion: LiveData<Boolean> get() = _resOperacion
+
+    private val _resultadoBorrar = MutableLiveData<Pair<Boolean, Usuario?>>()
+    val resultadoBorrar: LiveData<Pair<Boolean, Usuario?>> = _resultadoBorrar
 
     private val _errorCode = MutableLiveData<Int?>()
     val errorCode: LiveData<Int?> get() = _errorCode
@@ -59,4 +63,20 @@ class ProfesoresViewModel : ViewModel() {
             _isLoading.value = false
         }
     }
+
+
+    fun borrarUsuario(usuario: Usuario) {
+        viewModelScope.launch {
+            try {
+                val response = UserNetwork.retrofit.eliminarUsuario(usuario.id ?: 0)
+                Log.d("BorrarUsuario", "Response code: ${response.code()}, success: ${response.isSuccessful}")
+                _resultadoBorrar.postValue(Pair(response.isSuccessful, usuario))
+            } catch (e: Exception) {
+                Log.e("BorrarUsuario", "Error al borrar usuario", e)
+                _resultadoBorrar.postValue(Pair(false, usuario))
+            }
+        }
+    }
+
+
 }
